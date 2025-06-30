@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Shahjalal University of Science and Technology</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f5f8fd;
+      color: #0a2e66;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px 60px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(10, 46, 102, 0.1);
+      padding: 40px 40px 60px 40px;
+    }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding-bottom: 50px;
+      border-bottom: 2px solid #54a0ff;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #0a2e66;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #54a0ff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-style: italic;
+      user-select: none;
+    }
+
+    /* Sections */
+    section {
+      margin-top: 40px;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      color: #0a2e66;
+      margin-bottom: 20px;
+      border-left: 6px solid #54a0ff;
+      padding-left: 15px;
+      font-weight: 700;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      color: #333d6a;
+      line-height: 1.7;
+      user-select: text;
+    }
+
+    ul.core-values {
+      list-style: inside disc;
+      margin-top: 15px;
+      color: #333d6a;
+    }
+
+    ul.core-values li {
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    /* Library image and button */
+    .library-section {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .library-image {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(10, 46, 102, 0.15);
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+      user-select: none;
+    }
+    .library-button {
+      background-color: #0a2e66;
+      color: #fff;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+    .library-button:hover,
+    .library-button:focus {
+      background-color: #054399;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .container {
+        padding: 30px 20px 40px;
+      }
+      section h2 {
+        font-size: 1.5rem;
+        padding-left: 10px;
+      }
+      section p {
+        font-size: 1rem;
+      }
+      ul.core-values li {
+        font-size: 1rem;
+      }
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 15px 10px;
+      font-size: 0.9rem;
+      color: #777;
+      user-select: none;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header class="hero" aria-label="SUST About Us Header">
+      <h1>Shahjalal University of Science and Technology</h1>
+      <p>Advancing Knowledge, Creating Future</p>
+    </header>
+
+    <section aria-labelledby="overview-heading">
+      <h2 id="overview-heading">University Overview</h2>
+      <p>
+        Established in 1986, Shahjalal University of Science and Technology (SUST) is a leading public research university located in Sylhet,
+        Bangladesh. Recognized for its innovative curriculum and distinguished faculty, SUST is committed to excellence in education, research,
+        and community service.
+      </p>
+    </section>
+
+    <section aria-labelledby="mission-heading">
+      <h2 id="mission-heading">Mission &amp; Vision</h2>
+      <p>
+        Our mission is to cultivate a creative and innovative learning environment that promotes scientific inquiry, technological advancement,
+        and sustainable development. We envision SUST as a world-class university fostering leadership, fostering global partnerships, and
+        contributing to societal progress.
+      </p>
+    </section><li><a href="visit.html">visitlibraray</a></li>  
+    <section aria-labelledby="history-heading">
+      <h2 id="history-heading">History</h2>
+      <p>
+        Since its inception in 1986, SUST has grown rapidly to become one of the most respected institutions in Bangladesh. It was the first university
+        in the country to adopt an academic calendar based on semesters, emphasizing continuous evaluation and research orientation. Over the decades,
+        SUST has expanded its faculties, research centers, and international collaborations.
+      </p>
+    </section>
+
+    <section aria-labelledby="values-heading">
+      <h2 id="values-heading">Core Values</h2>
+      <ul class="core-values">
+        <li>Integrity and Ethical Conduct</li>
+        <li>Excellence in Research and Education</li>
+        <li>Innovation and Creativity</li>
+        <li>Inclusiveness and Diversity</li>
+        <li>Community Engagement and Responsibility</li>
+      </ul>
+    </section>
+
+    <section class="library-section" aria-label="Library Section">
+      <h2>Library</h2>
+      <img 
+        src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=80"
+        alt="University library interior with books and study areas"
+        class="library-image"
+        loading="lazy"
+      />
+      <button onclick="window.location.href='visit.html'" style="padding: 10px 20px; background-color: #161ae0; color: white; border: none; border-radius: 5px;">Visit Library</button>
+
+    
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2024 Shahjalal University of Science and Technology. All rights reserved.
+  </footer>
+</body>
+</html>
+

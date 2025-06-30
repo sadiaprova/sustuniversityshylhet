@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SUST Hostel Room Service & Admission</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f4f9f9;
+    color: #333;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  h1, h2 {
+    text-align: center;
+    color: #00796b;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+  }
+  form {
+    max-width: 480px;
+    margin: 20px auto 40px;
+    padding: 20px;
+    background: #e0f2f1;
+    border-radius: 12px;
+  }
+  label {
+    display: block;
+    margin: 15px 0 8px;
+    font-weight: 600;
+  }
+  select, input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid #00796b;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline-color: #004d40;
+  }
+  button {
+    margin-top: 20px;
+    width: 100%;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 14px 0;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background: #004d40;
+  }
+  .rooms-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+  .room-card {
+    width: 280px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    overflow: hidden;
+    background: #fafafa;
+    text-align: center;
+  }
+  .room-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .room-details {
+    padding: 16px 12px 24px;
+  }
+  .room-details h3 {
+    margin: 12px 0 6px;
+    color: #00796b;
+  }
+  .room-details p {
+    margin: 4px 0;
+    font-weight: 600;
+  }
+  .message {
+    max-width: 480px;
+    margin: 10px auto 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .message.error {
+    color: #d32f2f;
+  }
+  .message.success {
+    color: #388e3c;
+  }
+  @media (max-width: 700px) {
+    .rooms-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>SUST Hostel Room Service & Admission</h1>
+
+  <section class="container" aria-label="Room search and display">
+    <form id="roomForm" aria-label="Select department and gender to view rooms">
+      <label for="department">Select Department</label>
+      <select id="department" required>
+        <option value="" disabled selected>Select department</option>
+        <option value="CSE">CSE</option>
+        <option value="EEE">EEE</option>
+        <option value="BBA">BBA</option>
+        <option value="LAW">LAW</option>
+        <option value="ENGLISH">ENGLISH</option>
+        <option value="PHARMACY">PHARMACY</option>
+      </select>
+
+      <label for="gender">Select Gender</label>
+      <select id="gender" required>
+        <option value="" disabled selected>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <button type="submit">Show Rooms</button>
+    </form>
+
+    <div id="roomsContainer" class="rooms-grid" aria-live="polite" aria-label="Available rooms"></div>
+    <p id="noRoomsMessage" style="text-align:center; font-weight:600; display:none;">No rooms available for selected criteria.</p>
+  </section>
+
+  <section class="container" aria-label="Hostel admission and payment">
+    <h2>Hostel Admission Payment</h2>
+    <form id="paymentForm" aria-label="Hostel admission payment form">
+      <label for="studentId">Student ID</label>
+      <input type="text" id="studentId" placeholder="e.g. SUST1234" required />
+
+      <label for="payAmount">Payment Amount (BDT)</label>
+      <input type="number" id="payAmount" min="1" placeholder="Enter amount" required />
+
+      <button type="submit">Make Payment</button>
+    </form>
+    <div id="paymentMessage" class="message" role="alert" aria-live="assertive"></div>
+  </section>
+
+<script>
+  const rooms = [
+    { roomNo: '101', type: 'Male', department: 'CSE', image:'https://q-xx.bstatic.com/xdata/images/hotel/max500/322053597.jpg?k=75a2976c782accdbf1d6a99f64829ba43068bd90a53bf8fdf8df03c70fb6fce7&o=' },
+    { roomNo: '102', type: 'Male', department: 'EEE', image: 'https://images.unsplash.com/photo-1506197606566-fd82d8e88f38?auto=format&fit=crop&w=400&q=80' },
+    { roomNo: '103', type: 'Male', department: 'BBA', image: 'https://images.unsplash.com/photo-1519276550192-8c262d446012?auto=format&fit=crop&w=400&q=80' },
+    { roomNo: '104', type: 'Male', department: 'LAW', image: 'https://images.unsplash.com/photo-1596495577886-d920f1cbe77e?auto=format&fit=crop&w=400&q=80' },
+
+    { roomNo: '201', type: 'Female', department: 'CSE', image: 'https://3.imimg.com/data3/TN/UH/GLADMIN-11992488/imgs-rr.jpg'},
+    { roomNo: '203', type: 'Female', department: 'BBA', image: 'https://images.unsplash.com/photo-1486308510493-cb4823ea7b6a?auto=format&fit=crop&w=400&q=80' },
+    { roomNo: '204', type: 'Female', department: 'LAW', image: 'https://images.unsplash.com/photo-1465156799767-5a90438ef1e6?auto=format&fit=crop&w=400&q=80' }
+  ];
+
+  const students = {
+    'SUST1234': {name: 'Rahim', balance: 5000},
+    'SUST5678': {name: 'Karim', balance: 1200},
+    'SUST9101': {name: 'Selina', balance: 300}
+  };
+
+  const roomForm = document.getElementById('roomForm');
+  const roomsContainer = document.getElementById('roomsContainer');
+  const noRoomsMessage = document.getElementById('noRoomsMessage');
+  const paymentForm = document.getElementById('paymentForm');
+  const paymentMessage = document.getElementById('paymentMessage');
+
+  roomForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const dept = document.getElementById('department').value;
+    const gender = document.getElementById('gender').value;
+
+    const filteredRooms = rooms.filter(room => room.department === dept && room.type === gender);
+
+    roomsContainer.innerHTML = '';
+    if (filteredRooms.length === 0) {
+      noRoomsMessage.style.display = 'block';
+      roomsContainer.style.display = 'none';
+    } else {
+      noRoomsMessage.style.display = 'none';
+      roomsContainer.style.display = 'flex';
+
+      filteredRooms.forEach(room => {
+        const card = document.createElement('div');
+        card.className = 'room-card';
+        card.innerHTML = `
+          <img src="${room.image}" alt="Room ${room.roomNo} - ${room.department} (${room.type})" />
+          <div class="room-details">
+            <h3>Room No: ${room.roomNo}</h3>
+            <p>Type: ${room.type}</p>
+            <p>Department: ${room.department}</p>
+          </div>
+        `;
+        roomsContainer.appendChild(card);
+      });
+    }
+  });
+
+  paymentForm.addEventListener('submit', e => {
+    e.preventDefault();
+    paymentMessage.textContent = '';
+    paymentMessage.className = 'message';
+
+    const studentId = document.getElementById('studentId').value.trim().toUpperCase();
+    const amount = parseFloat(document.getElementById('payAmount').value);
+
+    if (!studentId || isNaN(amount) || amount <= 0) {
+      paymentMessage.textContent = 'Please enter valid Student ID and positive payment amount.';
+      paymentMessage.classList.add('error');
+      return;
+    }
+
+    if (!students[studentId]) {
+      paymentMessage.textContent = 'Student ID not found.';
+      paymentMessage.classList.add('error');
+      return;
+    }
+
+    const student = students[studentId];
+    if (student.balance < amount) {
+      paymentMessage.textContent = `Insufficient balance. Current balance: BDT ${student.balance.toFixed(2)}.`;
+      paymentMessage.classList.add('error');
+      return;
+    }
+
+    student.balance -= amount;
+    paymentMessage.textContent = `Payment successful! Remaining balance for ${student.name}: BDT ${student.balance.toFixed(2)}.`;
+    paymentMessage.classList.add('success');
+
+    paymentForm.reset();
+  });
+</script>
+</body>
+</html>
+

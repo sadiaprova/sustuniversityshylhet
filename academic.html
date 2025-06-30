@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUST University Academics</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Muli:wght@300;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Muli', sans-serif;
+      background: #f5f7fa;
+      color: #2c3e50;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(90deg, #274b87, #3a73b3);
+      width: 100%;
+      padding: 20px 0;
+      box-shadow: 0 4px 12px rgba(39, 75, 135, 0.4);
+      color: white;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    main {
+      max-width: 1000px;
+      width: 90%;
+      margin: 40px 0 80px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    section {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(39, 75, 135, 0.15);
+      padding: 40px 35px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 14px 38px rgba(39, 75, 135, 0.3);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      text-align: center;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #274b87;
+      padding-bottom: 6px;
+      max-width: max-content;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #4d5a6d;
+      margin: 0 0 12px 0;
+    }
+
+    .departments,
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: #f9fafc;
+      border-radius: 12px;
+      padding: 24px 22px;
+      box-shadow: 0 8px 18px rgba(39, 75, 135, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 42px rgba(39, 75, 135, 0.3);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #274b87;
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: #556677;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    footer {
+      width: 100%;
+      background: #274b87;
+      color: white;
+      text-align: center;
+      padding: 16px 0;
+      font-weight: 400;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+      }
+      section {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Shahjalal University of Science and Technology (SUST) - Academics
+  </header>
+  <main>
+    <section aria-labelledby="academics-about">
+      <h1 id="academics-about">SUST University Academics</h1>
+      <p>
+        Welcome to the academic hub of SUST. Our university offers a vibrant learning environment dedicated to research, innovation, and academic excellence. Explore our wide range of departments and resources designed to support student success and faculty development.
+      </p>
+      <p>
+        From undergraduate to postgraduate programs, SUST provides comprehensive academic programs aimed at fostering critical thinking, creativity, and professional skills necessary for the challenges of tomorrow.
+      </p>
+    </section>
+
+    <section aria-labelledby="departments-section">
+      <h2 id="departments-section">Academic Departments</h2>
+      <div class="departments">
+        <article class="card" tabindex="0">
+          <h3>Department of Computer Science and Engineering</h3>
+          <p>
+            Focused on cutting-edge research and hands-on programming education, preparing students for careers in software development, AI, and technology innovation.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Department of Electrical and Electronic Engineering</h3>
+          <p>
+            Offering courses in electronics, power systems, and telecommunications with opportunities for research and industrial collaboration.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Department of Mechanical Engineering</h3>
+          <p>
+            Equips students with foundational knowledge and practical skills in mechanical design, manufacturing, and automation.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Department of Mathematics</h3>
+          <p>
+            Provides theoretical and applied mathematics education to support a range of scientific and engineering disciplines.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Department of Physics</h3>
+          <p>
+            Dedicated to both fundamental and applied physics, fostering exploration of natural phenomena and energy research.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Department of Environmental Science and Management</h3>
+          <p>
+            Focuses on sustainable development, environmental policy, and natural resource management.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="resources-section">
+      <h2 id="resources-section">Academic Resources</h2>
+      <div class="resources">
+        <article class="card" tabindex="0">
+          <h3>University Library</h3>
+          <p>
+            Extensive academic collection, online databases, research journals, and comfortable study spaces.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Academic Calendar</h3>
+          <p>
+            Important dates for semesters, exams, registration, and holidays posted for easy student reference.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Research Centers</h3>
+          <p>
+            Specialized centers supporting innovative research and interdisciplinary collaboration.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Student Support Services</h3>
+          <p>
+            Academic advising, tutoring, career counseling, and mental health resources to support student success.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="contact-section">
+      <h2 id="contact-section">Contact &amp; Inquiries</h2>
+      <p>
+        For any academic inquiries, please reach out to the Office of Academic Affairs via email at <a href="mailto:academics@sust.edu" style="color:#274b87; font-weight:600;">academics@sust.edu</a> or call +880-821-713401-5 Ext: 111.
+      </p>
+      <p>
+        Visit our official website for more information: <a href="https://www.sust.edu" target="_blank" rel="noopener" style="color:#274b87; font-weight:600;">www.sust.edu</a>
+      </p>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 Shahjalal University of Science and Technology (SUST)
+  </footer>
+</body>
+</html>
+

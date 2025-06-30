@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SUST Admission Banner</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+  
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .ad-banner {
+    background: linear-gradient(90deg, #004d40, #00bfa5);
+    color: white;
+    padding: 25px 40px;
+    border-radius: 15px;
+    box-shadow: 0 12px 24px rgba(0, 191, 165, 0.5);
+    position: relative;
+    max-width: 650px;
+    width: 90%;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInSlide 1.5s forwards;
+  }
+  
+  .ad-banner h1 {
+    margin: 0 0 12px;
+    font-size: 2.5rem;
+    letter-spacing: 1.2px;
+  }
+  
+  .ad-banner p {
+    font-size: 1.2rem;
+    margin: 0 0 20px;
+    font-weight: 500;
+  }
+  
+  .btn-apply {
+    background: white;
+    color: #001279;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 12px 24px;
+    border-radius: 35px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(255,255,255,0.6);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-apply:hover {
+    background: #001c79;
+    color: white;
+    box-shadow: 0 6px 20px rgba(0, 121, 107, 0.7);
+  }
+  
+  @keyframes fadeInSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .ad-banner h1 {
+      font-size: 1.8rem;
+    }
+    .ad-banner p {
+      font-size: 1rem;
+    }
+    .btn-apply {
+      font-size: 1.1rem;
+      padding: 10px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="ad-banner" role="region" aria-label="Admission Advertisement">
+    <h1>Admission Going On for Fall 2026</h1>
+    <p>Secure your seat now at SUST and build your future with us!</p>
+    <a href="admission.html" class="btn-apply" role="button" aria-label="Apply for Admission">Apply Now</a>
+  </div>
+</body>
+</html>

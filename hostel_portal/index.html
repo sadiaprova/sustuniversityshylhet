@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>UST Canteen Food Ordering</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+  body {
+    font-family: 'Rubik', sans-serif;
+    background: #f9fafb;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    margin-bottom: 15px;
+    color: #005f99;
+  }
+  .container {
+    width: 100%;
+    max-width: 960px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    padding: 20px 30px 40px;
+  }
+  .menu-section {
+    margin-bottom: 30px;
+  }
+  .menu-section h2 {
+    border-bottom: 2px solid #005f99;
+    padding-bottom: 8px;
+    color: #005f99;
+    margin-bottom: 15px;
+  }
+  .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .menu-item {
+    flex: 1 1 220px;
+    background: #e3f2fd;
+    border-radius: 10px;
+    padding: 12px 15px;
+    box-shadow: 0 2px 7px rgba(0, 95, 153, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .item-name {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+  }
+  .item-price {
+    color: #007acc;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+  button.add-btn {
+    background-color: #005f99;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button.add-btn:hover {
+    background-color: #004a7d;
+  }
+  .order-summary {
+    background: #f0faff;
+    border: 2px solid #005f99;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  .order-summary h2 {
+    margin-top: 0;
+    color: #004a7d;
+  }
+  .order-list {
+    list-style: none;
+    padding-left: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+  .order-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-weight: 500;
+    border-bottom: 1px solid #cce6ff;
+  }
+  .order-list li span.qty {
+    font-weight: 700;
+    margin-right: 10px;
+    color: #005f99;
+  }
+  .total {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: right;
+    margin-bottom: 15px;
+    color: #003d66;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 15px;
+  }
+  input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid #005f99;
+    outline-color: #004a7d;
+  }
+  button.place-order {
+    margin-top: 15px;
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button.place-order:hover {
+    background-color: #005f99;
+  }
+  .message {
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .message.success {
+    color: #2e7d32; /* green */
+  }
+  .message.error {
+    color: #d32f2f; /* red */
+  }
+  @media (max-width: 700px) {
+    .menu-list {
+      flex-direction: column;
+    }
+    .menu-item {
+      flex-basis: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>SUST Canteen Food Order System</h1>
+  <div class="container" role="main">
+    <section class="menu-section" aria-labelledby="breakfastLabel">
+      <h2 id="breakfastLabel">Breakfast Menu</h2>
+      <div class="menu-list" id="breakfastMenu"></div>
+    </section>
+    <section class="menu-section" aria-labelledby="lunchLabel">
+      <h2 id="lunchLabel">Lunch Menu</h2>
+      <div class="menu-list" id="lunchMenu"></div>
+    </section>
+    <section class="menu-section" aria-labelledby="dinnerLabel">
+      <h2 id="dinnerLabel">Dinner Menu</h2>
+      <div class="menu-list" id="dinnerMenu"></div>
+    </section>
+
+    <div class="order-summary" aria-live="polite" aria-atomic="true" aria-label="Order summary">
+      <h2>Your Order</h2>
+      <ul class="order-list" id="orderList" aria-live="polite" aria-relevant="additions removals"></ul>
+      <div class="total" id="orderTotal">Total: $0</div>
+      <label for="studentIdInput">Enter Student ID:</label>
+      <input type="text" id="studentIdInput" aria-describedby="studentIdHelp" placeholder="e.g. UST123" required />
+      <small id="studentIdHelp" style="color: #555;">Money will be deducted from your student account balance.</small>
+      <button class="place-order" id="placeOrderBtn">Place Order</button>
+      <div class="message" id="message"></div>
+    </div>
+  </div>
+
+<script>
+  const students = {
+    'UST123': {name: 'Alice', balance: 100},
+    'UST456': {name: 'Bob', balance: 50},
+    'UST789': {name: 'Charlie', balance: 10}
+  };
+
+  // Updated food menus as requested
+  const foodMenus = {
+    breakfast: [
+      {id: 'b1', item: "Tea", price: 10},
+      {id: 'b2', item: "Coffee", price: 15},
+      {id: 'b3', item: "Butter", price: 5},
+      {id: 'b4', item: "Bread", price: 8}
+    ],
+    lunch: [
+      {id: 'l1', item: "Biryani", price: 120},
+      {id: 'l2', item: "Fried Rice", price: 80},
+      {id: 'l3', item: "Noodles", price: 70}
+    ],
+    dinner: [
+      {id: 'd1', item: "Soup", price: 40},
+      {id: 'd2', item: "Momos", price: 90},
+      {id: 'd3', item: "Pasta", price: 100},
+      {id: 'd4', item: "Pizza", price: 150},
+      {id: 'd5', item: "CocaCola", price: 30},
+      {id: 'd6', item: "Burger and Fries", price: 110}
+    ]
+  };
+
+  const breakfastMenuDiv = document.getElementById('breakfastMenu');
+  const lunchMenuDiv = document.getElementById('lunchMenu');
+  const dinnerMenuDiv = document.getElementById('dinnerMenu');
+  const orderList = document.getElementById('orderList');
+  const orderTotal = document.getElementById('orderTotal');
+  const studentIdInput = document.getElementById('studentIdInput');
+  const placeOrderBtn = document.getElementById('placeOrderBtn');
+  const messageDiv = document.getElementById('message');
+
+  let currentOrder = {};
+
+  function renderMenu(menuItems, container) {
+    container.innerHTML = '';
+    menuItems.forEach(food => {
+      const div = document.createElement('div');
+      div.className = 'menu-item';
+      div.innerHTML = `
+        <div class="item-name">${food.item}</div>
+        <div class="item-price">$${food.price}</div>
+        <button class="add-btn" data-id="${food.id}">Add to Order</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  renderMenu(foodMenus.breakfast, breakfastMenuDiv);
+  renderMenu(foodMenus.lunch, lunchMenuDiv);
+  renderMenu(foodMenus.dinner, dinnerMenuDiv);
+
+  function getFoodById(id) {
+    for (const mealType in foodMenus) {
+      const found = foodMenus[mealType].find(food => food.id === id);
+      if (found) return found;
+    }
+    return null;
+  }
+
+  function updateOrderUI() {
+    orderList.innerHTML = '';
+    let total = 0;
+    if (Object.keys(currentOrder).length === 0) {
+      orderList.innerHTML = '<li>No items in the order.</li>';
+    } else {
+      for (const id in currentOrder) {
+        const food = getFoodById(id);
+        const qty = currentOrder[id];
+        const itemTotal = food.price * qty;
+        total += itemTotal;
+
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="qty">${qty}x</span> ${food.item} - $${itemTotal}`;
+        orderList.appendChild(li);
+      }
+    }
+    orderTotal.textContent = `Total: $${total}`;
+  }
+
+  function addToOrder(id) {
+    if (currentOrder[id]) {
+      currentOrder[id]++;
+    } else {
+      currentOrder[id] = 1;
+    }
+    updateOrderUI();
+  }
+
+  [breakfastMenuDiv, lunchMenuDiv, dinnerMenuDiv].forEach(container => {
+    container.addEventListener('click', e => {
+      if (e.target.classList.contains('add-btn')) {
+        const id = e.target.getAttribute('data-id');
+        addToOrder(id);
+        messageDiv.textContent = '';
+      }
+    });
+  });
+
+  placeOrderBtn.addEventListener('click', () => {
+    const studentId = studentIdInput.value.trim().toUpperCase();
+    messageDiv.textContent = '';
+    messageDiv.className = 'message';
+
+    if (!studentId) {
+      messageDiv.textContent = 'Please enter your Student ID.';
+      messageDiv.classList.add('error');
+      return;
+    }
+    if (!students[studentId]) {
+      messageDiv.textContent = 'Student ID not found.';
+      messageDiv.classList.add('error');
+      return;
+    }
+    if (Object.keys(currentOrder).length === 0) {
+      messageDiv.textContent = 'Your order is empty.';
+      messageDiv.classList.add('error');
+      return;
+    }
+
+    let totalPrice = 0;
+    for (const id in currentOrder) {
+      const food = getFoodById(id);
+      totalPrice += food.price * currentOrder[id];
+    }
+
+    const student = students[studentId];
+    if (student.balance < totalPrice) {
+      messageDiv.textContent = `Insufficient balance. Your balance is $${student.balance.toFixed(2)} but your order total is $${totalPrice.toFixed(2)}.`;
+      messageDiv.classList.add('error');
+      return;
+    }
+
+    student.balance -= totalPrice;
+    messageDiv.textContent = `Thank you, ${student.name}! Your order has been placed. Remaining balance: $${student.balance.toFixed(2)}.`;
+    messageDiv.classList.add('success');
+
+    currentOrder = {};
+    updateOrderUI();
+    studentIdInput.value = '';
+  });
+
+  updateOrderUI();
+</script>
+</body>
+</html>

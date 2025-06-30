@@ -1,0 +1,11 @@
+{
+    "students": {
+        "123": {
+            "hostelRoom": "B-204"
+        },
+        "124": {
+            "hostelRoom": "A-112"
+        }
+    },
+    "canteenMenu": ["Biriyani", "Burger", "Noodles", "Tea", "Coffee", "Juice"]
+}

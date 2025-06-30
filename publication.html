@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUST Publications Gallery - Detailed</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: #f7f9fc;
+      color: #2a2a2a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 60px;
+      user-select: none;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0d3b66, #3a73b3);
+      width: 100%;
+      padding: 24px 20px;
+      color: white;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(13, 59, 102, 0.5);
+      user-select: none;
+    }
+
+    main {
+      max-width: 1000px;
+      width: 90%;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .filter-section {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-button {
+      background-color: #3a73b3;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 18px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .filter-button.active,
+    .filter-button:hover {
+      background-color: #0d3b66;
+    }
+
+    .search-input {
+      max-width: 320px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: 1.5px solid #ccc;
+      transition: border-color 0.3s ease;
+      outline: none;
+      margin-left: auto;
+    }
+
+    .search-input:focus {
+      border-color: #0d3b66;
+      box-shadow: 0 0 8px #0d3b66aa;
+    }
+
+    .publication-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .publication-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .publication-card:hover,
+    .publication-card:focus {
+      box-shadow: 0 24px 48px rgba(0,0,0,0.16);
+      transform: translateY(-6px);
+      outline: none;
+    }
+
+    .media-container {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background: #000;
+      overflow: hidden;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .media-container img,
+    .media-container video {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px 14px 0 0;
+    }
+
+    .publication-content {
+      padding: 20px 18px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .publication-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin: 0 0 10px 0;
+      color: #0d3b66;
+      user-select: text;
+    }
+
+    .publication-description {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #444;
+      user-select: text;
+      margin-bottom: 10px;
+    }
+
+    .publication-meta {
+      font-size: 0.875rem;
+      color: #666;
+      user-select: text;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .video-icon {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(13, 59, 102, 0.75);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    .video-icon svg {
+      fill: white;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
+
+    /* Modal Styles */
+
+    dialog {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      max-width: 90vw;
+      max-height: 80vh;
+      padding: 0;
+      position: fixed;
+      z-index: 1000;
+      background: transparent;
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .modal-content img,
+    .modal-content video {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: contain;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #0d3b66;
+      user-select: none;
+      transition: background 0.3s ease;
+      line-height: 32px;
+      text-align: center;
+      padding: 0;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+      background: white;
+      color: #06214f;
+      outline: none;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        width: 95%;
+      }
+
+      .publication-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    SUST Publications Gallery - Detailed
+  </header>
+  <main>
+    <section class="filter-section" aria-label="Filter publications">
+      <button class="filter-button active" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-button" data-filter="nanotech" aria-pressed="false">Nanotechnology</button>
+      <button class="filter-button" data-filter="robotics" aria-pressed="false">Robotics</button>
+      <button class="filter-button" data-filter="environment" aria-pressed="false">Environment</button>
+      <button class="filter-button" data-filter="energy" aria-pressed="false">Renewable Energy</button>
+      <input type="search" class="search-input" aria-label="Search publications" placeholder="Search publications..." />
+    </section>
+
+    <section class="publication-list" aria-live="polite" aria-relevant="additions removals">
+      <article class="publication-card" tabindex="0" data-type="image" data-src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" data-tags="nanotech" aria-label="Publication: Nanotechnology breakthrough">
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" alt="Nanotechnology research equipment" />
+        </div>
+        <div class="publication-content">
+          <h3 class="publication-title">Nanotechnology Breakthrough</h3>
+          <p class="publication-description">
+            Cutting-edge research on nanomaterials for sustainable applications published in the Journal of Advanced Materials, 2024.
+          </p>
+          <div class="publication-meta">
+            By Dr. Amina Rahman | Jan 2024 | Journal of Advanced Materials
+          </div>
+        </div>
+      </article>
+
+      <article class="publication-card" tabindex="0" data-type="video" data-src="https://www.w3schools.com/html/mov_bbb.mp4" data-tags="robotics" aria-label="Publication: AI Robotics Demo Video">
+        <div class="media-container">
+          <video src="https://www.w3schools.com/html/mov_bbb.mp4" muted preload="metadata" poster="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=800&q=80" aria-hidden="true"></video>
+          <div class="video-icon" aria-hidden="true" title="Play video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="publication-content">
+          <h3 class="publication-title">AI Robotics Demo</h3>
+          <p class="publication-description">
+            Presentation of recent AI-driven robotics advancements at the International Tech Conference 2024.
+          </p>
+          <div class="publication-meta">
+            By Prof. Imran Hossain | Mar 2024 | International Tech Conference
+          </div>
+        </div>
+      </article>
+
+      <article class="publication-card" tabindex="0" data-type="image" data-src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" data-tags="environment" aria-label="Publication: Environmental Study Report">
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Environmental study fieldwork" />
+        </div>
+        <div class="publication-content">
+          <h3 class="publication-title">Environmental Study Report</h3>
+          <p class="publication-description">
+            Comprehensive research on climate impact in the Sundarbans region, published June 2024.
+          </p>
+          <div class="publication-meta">
+            By Dr. Farhana Akter | June 2024 | Environmental Research Journal
+          </div>
+        </div>
+      </article>
+
+      <article class="publication-card" tabindex="0" data-type="video" data-src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" data-tags="energy" aria-label="Publication: Renewable Energy Seminar Video">
+        <div class="media-container">
+          <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" muted preload="metadata" poster="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" aria-hidden="true"></video>
+          <div class="video-icon" aria-hidden="true" title="Play video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="publication-content">
+          <h3 class="publication-title">Renewable Energy Seminar</h3>
+          <p class="publication-description">
+            Highlights of a seminar on solar and wind energy research innovations at SUST.
+          </p>
+          <div class="publication-meta">
+            By Dr. Sarah Islam | April 2024 | Renewable Energy Letters
+          </div>
+        </div>
+      </article>
+
+      <article class="publication-card" tabindex="0" data-type="image" data-src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" data-tags="nanotech energy" aria-label="Publication: Nano Energy Collaboration">
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Nanotechnology with renewable energy illustration" />
+        </div>
+        <div class="publication-content">
+          <h3 class="publication-title">Nano Energy Collaboration</h3>
+          <p class="publication-description">
+            Collaborative project integrating nanotechnology with renewable energy solutions, published March 2024.
+          </p>
+          <div class="publication-meta">
+            By Dr. Kamal Uddin &amp; Team | Mar 2024 | Journal of Nano Energy
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <dialog id="mediaModal" aria-label="Publication media viewer">
+    <button class="close-btn" aria-label="Close media viewer">&times;</button>
+    <div class="modal-content" id="modalContent" tabindex="0">
+      <!-- Media loaded here dynamically -->
+    </div>
+  </dialog>
+
+  <script>
+    const modal = document.getElementById('mediaModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeBtn = modal.querySelector('.close-btn');
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const searchInput = document.querySelector('.search-input');
+    const publicationCards = document.querySelectorAll('.publication-card');
+
+    function openModal(type, src) {
+      while(modalContent.firstChild) {
+        modalContent.removeChild(modalContent.firstChild);
+      }
+      if(type === 'image') {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = "Publication image";
+        modalContent.appendChild(img);
+      } else if(type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        modalContent.appendChild(video);
+      }
+      modal.showModal();
+      modalContent.focus();
+    }
+
+    function closeModal() {
+      modal.close();
+      const media = modalContent.querySelector('video');
+      if(media) {
+        media.pause();
+        media.currentTime = 0;
+      }
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.querySelectorAll('.publication-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const type = card.getAttribute('data-type');
+        const src = card.getAttribute('data-src');
+        openModal(type, src);
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const type = card.getAttribute('data-type');
+          const src = card.getAttribute('data-src');
+          openModal(type, src);
+        }
+      });
+    });
+
+    // Filter functionality
+
+    function filterPublications(category) {
+      publicationCards.forEach(card => {
+        const tags = card.getAttribute('data-tags').split(' ');
+        if(category === 'all' || tags.includes(category)) {
+          card.style.display = '';
+          card.setAttribute('tabindex', '0');
+        } else {
+          card.style.display = 'none';
+          card.setAttribute('tabindex', '-1');
+        }
+      });
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-pressed', 'false');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
+        const filter = button.getAttribute('data-filter');
+        filterPublications(filter);
+        searchInput.value = '';
+      });
+    });
+
+    // Search functionality
+
+    function searchPublications(query) {
+      const q = query.trim().toLowerCase();
+      if(!q) {
+        publicationCards.forEach(card => {
+          card.style.display = '';
+          card.setAttribute('tabindex', '0');
+        });
+        return;
+      }
+      publicationCards.forEach(card => {
+        const title = card.querySelector('.publication-title').textContent.toLowerCase();
+        const desc = card.querySelector('.publication-description').textContent.toLowerCase();
+        const meta = card.querySelector('.publication-meta').textContent.toLowerCase();
+        if(title.includes(q) || desc.includes(q) || meta.includes(q)) {
+          card.style.display = '';
+          card.setAttribute('tabindex', '0');
+        } else {
+          card.style.display = 'none';
+          card.setAttribute('tabindex', '-1');
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      const value = e.target.value;
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+      filterButtons[0].classList.add('active'); // Activate 'All' by default
+      filterButtons[0].setAttribute('aria-pressed', 'true');
+      searchPublications(value);
+    });
+  </script>
+</body>
+</html>
+

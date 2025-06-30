@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUST University Research</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: #f0f4f9;
+      color: #1e2a47;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      width: 100%;
+      background: linear-gradient(90deg, #1a3a8c, #3a6dcc);
+      padding: 24px 0;
+      box-shadow: 0 6px 18px rgba(26, 58, 140, 0.45);
+      text-align: center;
+      color: white;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    main {
+      max-width: 960px;
+      width: 90%;
+      margin: 40px 0 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    section {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 35px;
+      box-shadow: 0 14px 30px rgba(26, 58, 140, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 20px 40px rgba(26, 58, 140, 0.3);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+      color: #1e2a47;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      text-align: center;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      border-bottom: 3px solid #3a6dcc;
+      max-width: max-content;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #425c8a;
+      line-height: 1.5;
+      margin: 0 0 16px 0;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: #f9fbfe;
+      border-radius: 14px;
+      padding: 24px 22px;
+      box-shadow: 0 8px 22px rgba(58, 109, 204, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 50px rgba(58, 109, 204, 0.32);
+    }
+
+    .card h3 {
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      color: #1e2a47;
+      line-height: 1.2;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: #5870a9;
+      flex-grow: 1;
+    }
+
+    .publications-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      color: #425c8a;
+    }
+
+    .publications-list li {
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    .publications-list li span {
+      font-weight: 600;
+      color: #1e2a47;
+    }
+
+    a {
+      color: #3a6dcc;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: #274b87;
+      outline: none;
+      text-decoration: underline;
+    }
+
+    footer {
+      width: 100%;
+      background: #1a3a8c;
+      color: white;
+      text-align: center;
+      padding: 18px 0;
+      font-weight: 500;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+      }
+      section {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Shahjalal University of Science and Technology (SUST) - Research
+  </header>
+  <main>
+    <section aria-labelledby="intro-research">
+      <h1 id="intro-research">SUST University Research</h1>
+      <p>
+        At Shahjalal University of Science and Technology, research excellence is the cornerstone of our mission. We foster innovation, interdisciplinary collaboration, and solutions to global challenges through cutting-edge research initiatives.
+      </p>
+      <p>
+        Explore our research centers, publications, and opportunities designed to empower researchers, students, and partners.
+      </p>
+    </section>
+
+    <section aria-labelledby="centers-section">
+      <h2 id="centers-section">Research Centers &amp; Labs</h2>
+      <div class="cards-container">
+        <article class="card" tabindex="0">
+          <h3>Center for Advanced Materials Research</h3>
+          <p>
+            Engages in innovative research on nanomaterials, composites, and sustainable materials for industry and academia.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Institute of Environmental Studies</h3>
+          <p>
+            Focused on environmental policy, climate change, and sustainable development research with community engagement.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Robotics and Intelligent Systems Lab</h3>
+          <p>
+            Dedicated to AI-driven robotics, automation technologies, and intelligent systems research for real-world applications.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Renewable Energy Research Center</h3>
+          <p>
+            Innovating in solar, wind, and alternative energy technologies to promote sustainable energy solutions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="publications-section">
+      <h2 id="publications-section">Recent Publications</h2>
+      <ul class="publications-list">
+        <li><span>Dr. Amina Rahman</span> - "Nanomaterial composites for efficient solar cells," <em>Journal of Applied Materials, 2024.</em></li>
+        <li><span>Prof. Imran Hossain</span> - "Climate change effects on the Sundarbans ecosystem," <em>Environmental Science Reports, 2024.</em></li>
+        <li><span>Dr. Farhan Chowdhury</span> - "AI techniques in robotic path planning," <em>International Robotics Journal, 2023.</em></li>
+        <li><span>Dr. Sarah Islam</span> - "Wind energy utilization optimization," <em>Renewable Energy Letters, 2024.</em></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="opportunities-section">
+      <h2 id="opportunities-section">Research Opportunities</h2>
+      <div class="cards-container">
+        <article class="card" tabindex="0">
+          <h3>Graduate Research Scholarships</h3>
+          <p>
+            Scholarships available for promising graduate students focusing on STEM and interdisciplinary research areas.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Collaborative Projects</h3>
+          <p>
+            Partnership opportunities with industry, NGOs, and international research institutions.
+          </p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>Visiting Researcher Program</h3>
+          <p>
+            Supports visiting scholars and researchers wishing to collaborate on ongoing SUST projects.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="contact-section">
+      <h2 id="contact-section">Contact Research Office</h2>
+      <p>
+        For research inquiries, please contact the Office of Research & Innovation at <a href="mailto:research@sust.edu" target="_blank" rel="noopener">research@sust.edu</a> or call +880-821-713401-5 Ext: 222.
+      </p>
+      <p>
+        Visit our website for details: <a href="https://www.sust.edu/research" target="_blank" rel="noopener">www.sust.edu/research</a>
+      </p>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 Shahjalal University of Science and Technology (SUST)
+  </footer>
+</body>
+</html>

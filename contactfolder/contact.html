@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SUST Contact Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 style="text-align:center; font-family:Arial; color:#0d1b5b;">
+        Shahjalal University of Science and Technology
+    </h1>
+    <div class="container">
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p>📍 shylet, Bangladesh</p>
+            <p>📞 +880 821 713000 Ext: 9320</p>
+            <p>📧 info@sust.edu</p>
+        </div>
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+            <form action="contact.php" method="POST">
+                <input type="text" name="name" placeholder="Your full name" required>
+                <input type="email" name="email" placeholder="Your email address" required>
+                <input type="text" name="subject" placeholder="Subject of your message" required>
+                <textarea name="message" placeholder="Write your message here" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

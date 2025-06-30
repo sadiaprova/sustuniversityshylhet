@@ -1,0 +1,39 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SUST Canteen Food Order System</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>SUST Canteen Food Order System</h1>
+
+    <!-- Menu Sections -->
+    <div id="menus">
+      <h3>Breakfast Menu</h3>
+      <div class="menu-section" id="breakfast"></div>
+
+      <h3>Lunch Menu</h3>
+      <div class="menu-section" id="lunch"></div>
+
+      <h3>Dinner Menu</h3>
+      <div class="menu-section" id="dinner"></div>
+    </div>
+
+    <!-- Order Box -->
+    <div class="order-box">
+      <h3>Your Order</h3>
+      <ul id="orderList"></ul>
+      <p><strong>Total:</strong> $<span id="total">0</span></p>
+      <input type="text" id="studentId" placeholder="e.g. SUST123" />
+      <button onclick="placeOrder()">Place Order</button>
+      <p id="response" class="error"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

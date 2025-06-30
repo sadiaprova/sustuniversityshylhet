@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SUST ePayment</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  header h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+  main {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    margin-top: 15px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  input[type="text"],
+  input[type="number"],
+  select {
+    margin-top: 6px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: background-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus {
+    background-color: rgba(255,255,255,0.9);
+    color: #333;
+  }
+  .payment-method-details {
+    margin-top: 15px;
+  }
+  .payment-method-details input {
+    width: 100%;
+  }
+  button {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #00bfa6;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,191,166,0.6);
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #009e8f;
+  }
+  .footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #c1dff0;
+    padding: 15px 0 5px;
+  }
+  /* Responsive */
+  @media (max-width: 500px) {
+    main {
+      padding: 25px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>SUST ePayment</h1>
+  </header>
+  <main>
+    <form id="payment-form" novalidate>
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+
+      <label for="studentId">Student ID / Account Number</label>
+      <input type="text" id="studentId" name="studentId" placeholder="e.g., SUST123456" required pattern="^[A-Za-z0-9]+$" />
+
+      <label for="amount">Payment Amount (USD)</label>
+      <input type="number" id="amount" name="amount" placeholder="e.g., 150.00" step="0.01" min="1" max="10000" required />
+
+      <label for="paymentMethod">Payment Method</label>
+      <select id="paymentMethod" name="paymentMethod" required>
+        <option value="" disabled selected>Select a payment method</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="mobile">Mobile Payment</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+
+      <div id="card-details" class="payment-method-details" style="display: none;">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" pattern="\\d{13,19}" />
+
+        <label for="cardExpiry">Expiry Date (MM/YY)</label>
+        <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\\/\\d{2}$" />
+
+        <label for="cardCVC">CVC</label>
+        <input type="text" id="cardCVC" name="cardCVC" placeholder="123" pattern="\\d{3,4}" />
+      </div>
+
+      <button type="submit">Make Payment</button>
+    </form>
+  </main>
+  <div class="footer">
+    &copy; 2024 SUST ePayment. All rights reserved.
+  </div>
+
+  <script>
+    const paymentMethodSelect = document.getElementById('paymentMethod');
+    const cardDetailsSection = document.getElementById('card-details');
+    const form = document.getElementById('payment-form');
+
+    paymentMethodSelect.addEventListener('change', () => {
+      if (paymentMethodSelect.value === 'card') {
+        cardDetailsSection.style.display = 'block';
+        // Set required for card fields
+        cardDetailsSection.querySelectorAll('input').forEach(input => {
+          input.required = true;
+        });
+      } else {
+        cardDetailsSection.style.display = 'none';
+        // Remove required from card fields
+        cardDetailsSection.querySelectorAll('input').forEach(input => {
+          input.required = false;
+          input.value = '';
+        });
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic HTML5 validation first
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Additional validation for card fields if card selected
+      if (paymentMethodSelect.value === 'card') {
+        const cardNumber = form.cardNumber.value.trim().replace(/\s+/g, '');
+        const cardExpiry = form.cardExpiry.value.trim();
+        const cardCVC = form.cardCVC.value.trim();
+
+        if (!/^\d{13,19}$/.test(cardNumber)) {
+          alert('Please enter a valid card number (13 to 19 digits).');
+          return;
+        }
+        if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(cardExpiry)) {
+          alert('Please enter a valid expiry date in MM/YY format.');
+          return;
+        }
+        if (!/^\d{3,4}$/.test(cardCVC)) {
+          alert('Please enter a valid CVC (3 or 4 digits).');
+          return;
+        }
+      }
+
+      // Simulate payment submission
+      alert(
+        'Payment Successful!\n' +
+        'Name: ' + form.fullName.value + '\n' +
+        'Student ID: ' + form.studentId.value + '\n' +
+        'Amount: $' + parseFloat(form.amount.value).toFixed(2) + '\n' +
+        'Payment Method: ' + paymentMethodSelect.options[paymentMethodSelect.selectedIndex].text
+      );
+
+      form.reset();
+      cardDetailsSection.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
+

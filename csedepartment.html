@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUST - Department of Computer Science and Engineering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sust-blue: #003366;
+            --sust-green: #006633;
+            --sust-gold: #CC9900;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--sust-blue) 0%, var(--sust-green) 100%);
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            color: white;
+            border-bottom-color: var(--sust-gold);
+        }
+        
+        .department-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .faculty-card {
+            transition: all 0.3s ease;
+        }
+        
+        .faculty-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-card {
+            border-left: 4px solid var(--sust-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .course-card:hover {
+            border-left-width: 8px;
+            background-color: rgba(0, 51, 102, 0.05);
+        }
+        
+        .footer-bg {
+            background: linear-gradient(135deg, var(--sust-green) 0%, var(--sust-blue) 100%);
+        }
+        
+        .sust-map {
+            filter: grayscale(30%) contrast(110%);
+            transition: all 0.3s ease;
+        }
+        
+        .sust-map:hover {
+            filter: grayscale(0%) contrast(100%);
+        }
+        
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--sust-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="https://www.sust.edu/uploads/images/logo.png" alt="SUST Logo" class="h-16 mr-4">
+                    <div>
+                        <h1 class="text-2xl font-bold">Shahjalal University of Science & Technology</h1>
+                        <p class="text-sm opacity-90">Department of Computer Science and Engineering</p>
+                    </div>
+                </div>
+                <nav class="flex space-x-1 md:space-x-6">
+                    <a href="#" class="nav-link px-3 py-2 rounded font-medium">Home</a>
+                    <a href="#about" class="nav-link px-3 py-2 rounded font-medium">About</a>
+                    <a href="#faculty" class="nav-link px-3 py-2 rounded font-medium">Faculty</a>
+                    <a href="#courses" class="nav-link px-3 py-2 rounded font-medium">Courses</a>
+                    <a href="#research" class="nav-link px-3 py-2 rounded font-medium">Research</a>
+                    <a href="#contact" class="nav-link px-3 py-2 rounded font-medium">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 animate-fade-in" style="animation-delay: 0.1s;">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Welcome to CSE Department</h1>
+                <p class="text-xl text-gray-600 mb-6">Pioneering computer science education and research in Bangladesh since 1991.</p>
+                <div class="flex space-x-4">
+                    <a href="#about" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Explore Department</a>
+                    <a href="#contact" class="border-2 border-blue-700 text-blue-700 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition duration-300">Contact Us</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 animate-fade-in" style="animation-delay: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="CSE Department" class="rounded-lg shadow-xl w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Department Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">About Our Department</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="department-card bg-white p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-graduation-cap text-blue-700 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Our History</h3>
+                    </div>
+                    <p class="text-gray-600">Established in 1991, the Department of Computer Science and Engineering at SUST has been at the forefront of technological education in Bangladesh. We were one of the first universities in the country to offer a full-fledged CSE program.</p>
+                </div>
+                
+                <div class="department-card bg-white p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-bullseye text-green-700 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Our Mission</h3>
+                    </div>
+                    <p class="text-gray-600">To produce world-class computer science graduates equipped with both theoretical knowledge and practical skills. We aim to foster innovation, research, and ethical computing practices to serve the nation and the global community.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Department at a Glance</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-user-graduate text-blue-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Students</h4>
+                                    <p class="text-gray-600">800+ undergraduate and 150+ graduate students</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-chalkboard-teacher text-green-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Faculty Members</h4>
+                                    <p class="text-gray-600">35+ full-time faculty with diverse specializations</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-flask text-purple-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Research Labs</h4>
+                                    <p class="text-gray-600">8 specialized labs including AI, Networking, and Bioinformatics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="CSE Lab" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Members Section -->
+    <section id="faculty" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Faculty Members</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Faculty Card 1 -->
+                <div class="faculty-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100">
+                    <div class="relative">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Prof. Md. Abu Bakar Siddique" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <h3 class="text-white font-semibold">Prof. Md. Abu Bakar Siddique</h3>
+                            <p class="text-blue-200 text-sm">Head of Department</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-2"><i class="fas fa-graduation-cap text-blue-600 mr-2"></i> PhD, University of Tokyo</p>
+                        <p class="text-gray-600 mb-3"><i class="fas fa-microscope text-green-600 mr-2"></i> Artificial Intelligence, Machine Learning</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-gray-500 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-500 hover:text-green-600"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Faculty Card 2 -->
+               

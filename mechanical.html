@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUST - Department of Mechanical Engineering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sust-blue: #003366;
+            --sust-red: #CC0000;
+            --sust-steel: #6B7280;
+            --sust-light: #F3F4F6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--sust-light);
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--sust-blue) 0%, var(--sust-steel) 100%);
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            color: white;
+            border-bottom-color: var(--sust-red);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                          url('https://images.unsplash.com/photo-1502877332365-1e65d2cb9f01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-top-color: var(--sust-red);
+        }
+        
+        .faculty-card {
+            transition: all 0.3s ease;
+        }
+        
+        .faculty-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .lab-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .lab-card:hover {
+            border-left-color: var(--sust-red);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bg {
+            background: linear-gradient(135deg, var(--sust-steel) 0%, var(--sust-blue) 100%);
+        }
+        
+        .gear-icon {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+            color: var(--sust-red);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .rotating {
+            animation: rotate 10s linear infinite;
+        }
+        
+        .specialization-chip {
+            display: inline-block;
+            background-color: rgba(204, 0, 0, 0.1);
+            color: var(--sust-steel);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="https://www.sust.edu/uploads/images/logo.png" alt="SUST Logo" class="h-16 mr-4">
+                    <div>
+                        <h1 class="text-xl md:text-2xl font-bold">Shahjalal University of Science & Technology</h1>
+                        <p class="text-xs md:text-sm opacity-90">Department of Mechanical Engineering</p>
+                    </div>
+                </div>
+                <nav class="flex flex-wrap justify-center space-x-1 md:space-x-4">
+                    <a href="#" class="nav-link px-2 py-1 md:px-3 md:py-2 rounded font-medium">Home</a>
+                    <a href="#about" class="nav-link px-2 py-1 md:px-3 md:py-2 rounded font-medium">About</a>
+                    <a href="#programs" class="nav-link px-2 py-1 md:px-3 md:py-2 rounded font-medium">Programs</a>
+                    <a href="#faculty" class="nav-link px-2 py-1 md:px-3 md:py-2 rounded font-medium">Faculty</a>
+                    <a href="#research" class="nav-link px-2 py-1 md:px-3 md:py-2 rounded font-medium">Research</a>
+                    <a href="#contact" class="nav-link px-2 py-1 md:px-3 md:py-2 rounded font-medium">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20 md:py-32 relative overflow-hidden">
+        <div class="gear-icon rotating" style="top: 20%; left: 10%;">
+            <i class="fas fa-cog text-6xl"></i>
+        </div>
+        <div class="gear-icon rotating" style="top: 70%; left: 80%; animation-direction: reverse;">
+            <i class="fas fa-cog text-5xl"></i>
+        </div>
+        <div class="gear-icon rotating" style="top: 40%; left: 85%;">
+            <i class="fas fa-cog text-4xl"></i>
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Engineering Innovation for Tomorrow's World</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                Excellence in mechanical engineering education and research since 1991
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#programs" class="bg-white text-gray-800 hover:bg-gray-100 px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium transition duration-300">
+                    Explore Programs
+                </a>
+                <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium transition duration-300">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <div class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-2">
+                    <p class="text-2xl font-bold">900+</p>
+                    <p class="text-xs md:text-sm">Students</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-2xl font-bold">35+</p>
+                    <p class="text-xs md:text-sm">Faculty Members</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-2xl font-bold">10</p>
+                    <p class="text-xs md:text-sm">Specialized Labs</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-2xl font-bold">1991</p>
+                    <p class="text-xs md:text-sm">Established</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">About the Department</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="relative rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Mechanical Engineering Lab" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6">
+                        To provide world-class education in mechanical engineering, fostering innovation and research in design, thermal systems, manufacturing, and materials science to meet the challenges of the 21st century.
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-4">Our Facilities</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>State-of-the-art machine shops and fabrication labs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Advanced CAD/CAM/CAE facilities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Thermodynamics and fluid mechanics research center</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Collaborations with leading engineering firms</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Mechanical Engineering?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl text-red-600 mb-3">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Diverse Specializations</h3>
+                        <p class="text-gray-600">
+                            Opportunities in automotive, aerospace, energy, robotics, and manufacturing industries with broad career prospects.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl text-red-600 mb-3">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Hands-on Learning</h3>
+                        <p class="text-gray-600">
+                            Extensive laboratory work, workshops, and design projects that bridge theory with practical applications.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl text-red-600 mb-3">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Innovation Focus</h3>
+                        <p class="text-gray-600">
+                            Emphasis on creative problem-solving, design thinking, and developing sustainable engineering solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Academic Programs</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Undergraduate Program -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 border-b pb-2">B.Sc. in Mechanical Engineering</h3>
+                    <ul class="space-y-3 text-gray-600 mb-4">
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>4-year undergraduate degree program</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>164 credit hours curriculum</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Industrial training and internship</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Comprehensive design project</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <h4 class="font-semibold mb-2">Specializations:</h4>
+                        <div class="flex flex-wrap">
+                            <span class="specialization-chip">Thermal Engineering</span>
+                            <span class="specialization-chip">Manufacturing</span>
+                            <span class="specialization-chip">Mechatronics</span>
+                            <span class="specialization-chip">Materials Science</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Graduate Program -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 border-b pb-2">M.Sc. in Mechanical Engineering</h3>
+                    <ul class="space-y-3 text-gray-600 mb-4">
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>1-2 years graduate program</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Thesis and Non-Thesis options</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Advanced research in mechanical systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">✓</span>
+                            <span>Evening classes for working professionals</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4">
+                        <h4 class="font-semibold mb-2">Research Areas:</h4>
+                        <div class="flex flex-wrap">
+                            <span class="specialization-chip">Energy Systems</span>
+                            <span class="specialization-chip">Robotics</span>
+                            <span class="specialization-chip">Automotive</span>
+                            <span class="specialization-chip">Biomechanics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section id="faculty" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Faculty</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Faculty 1 -->
+                <div class="faculty-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Prof. Ahmed Khan" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <h3 class="text-white font-semibold">Prof. Ahmed Khan</h3>
+                            <p class="text-red-200 text-sm">Head of Department</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-2"><i class="fas fa-graduation-cap text-red-600 mr-2"></i> PhD, University of Michigan</p>
+                        <p class="text-gray-600 mb-3"><i class="fas fa-microscope text-blue-600 mr-2"></i> Thermal Systems, Renewable Energy</p>
+                       

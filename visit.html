@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visit Library - Book Catalog</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background: #1a73e8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+  }
+  main {
+    flex: 1;
+    padding: 20px 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .search-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .search-container input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 15px;
+    border-radius: 30px;
+    border: 2px solid #1a73e8;
+    font-size: 1rem;
+    outline-color: #1a73e8;
+    box-shadow: 0 2px 6px rgba(26,115,232,0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  .search-container input:focus {
+    box-shadow: 0 4px 14px rgba(26,115,232,0.6);
+  }
+  .book-list {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead tr {
+    background-color: #1a73e8;
+    color: white;
+    font-weight: 700;
+  }
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  tbody tr:hover {
+    background-color: #f1f6ff;
+  }
+  @media (max-width: 600px) {
+    .search-container input {
+      max-width: 100%;
+    }
+    th, td {
+      padding: 10px 8px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Visit Library - Book Catalog</h1>
+  </header>
+  <main>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search books by Title or Author..." aria-label="Search books" />
+    </div>
+    <div class="book-list" role="region" aria-live="polite" aria-label="Book list">
+      <table aria-describedby="bookCount">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Genre</th>
+          </tr>
+        </thead>
+        <tbody id="bookTableBody"></tbody>
+      </table>
+      <p id="bookCount" style="margin-top:10px; font-weight: 600; color: #333;"></p>
+    </div>
+  </main>
+<script>
+  const books = [
+    {title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960, genre: "Fiction"},
+    {title: "1984", author: "George Orwell", year: 1949, genre: "Dystopian"},
+    {title: "Pride and Prejudice", author: "Jane Austen", year: 1813, genre: "Romance"},
+    {title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: 1925, genre: "Fiction"},
+    {title: "Moby-Dick", author: "Herman Melville", year: 1851, genre: "Adventure"},
+    {title: "The Catcher in the Rye", author: "J.D. Salinger", year: 1951, genre: "Fiction"},
+    {title: "The Hobbit", author: "J.R.R. Tolkien", year: 1937, genre: "Fantasy"},
+    {title: "Fahrenheit 451", author: "Ray Bradbury", year: 1953, genre: "Dystopian"},
+    {title: "Jane Eyre", author: "Charlotte Brontë", year: 1847, genre: "Romance"},
+    {title: "Brave New World", author: "Aldous Huxley", year: 1932, genre: "Dystopian"},
+    // 90 more books generated here for demo
+  ];
+
+  // Fill rest with dummy 90 books for the array
+  const genres = ["Fiction", "Adventure", "Romance", "Science Fiction", "Fantasy", "Dystopian", "Biography"];
+
+  function generateDummyBooks() {
+    for(let i=1; i<=90; i++) {
+      books.push({
+        title: `Sample Book Title ${i}`,
+        author: `Author ${i}`,
+        year: 1900 + (i % 121),
+        genre: genres[i % genres.length]
+      });
+    }
+  }
+  generateDummyBooks();
+
+  const tableBody = document.getElementById('bookTableBody');
+  const searchInput = document.getElementById('searchInput');
+  const bookCount = document.getElementById('bookCount');
+
+  function renderBooks(bookArray) {
+    tableBody.innerHTML = '';
+    if(bookArray.length === 0) {
+      tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#888; padding: 15px;">No books found.</td></tr>';
+    } else {
+      bookArray.forEach(book => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${book.title}</td>
+          <td>${book.author}</td>
+          <td>${book.year}</td>
+          <td>${book.genre}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+    bookCount.textContent = `Total Books: ${bookArray.length}`;
+  }
+
+  function filterBooks(query) {
+    query = query.toLowerCase();
+    return books.filter(book =>
+      book.title.toLowerCase().includes(query) ||
+      book.author.toLowerCase().includes(query)
+    );
+  }
+
+  searchInput.addEventListener('input', () => {
+    const filteredBooks = filterBooks(searchInput.value);
+    renderBooks(filteredBooks);
+  });
+
+  // Initial render all books
+  renderBooks(books);
+</script>
+</body>
+</html>
+

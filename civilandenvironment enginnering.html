@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUST - Department of Civil & Environmental Engineering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sust-blue: #003366;
+            --sust-green: #006633;
+            --sust-earth: #8B4513;
+            --sust-concrete: #A9A9A9;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--sust-earth) 0%, var(--sust-blue) 100%);
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            color: white;
+            border-bottom-color: var(--sust-green);
+        }
+        
+        .department-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--sust-earth);
+        }
+        
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .faculty-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .faculty-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-left-color: var(--sust-earth);
+        }
+        
+        .specialization-chip {
+            display: inline-block;
+            background-color: rgba(139, 69, 19, 0.1);
+            color: var(--sust-earth);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+        
+        .footer-bg {
+            background: linear-gradient(135deg, var(--sust-green) 0%, var(--sust-blue) 100%);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                          url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .lab-equipment {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .lab-equipment:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button.active {
+            border-bottom-color: var(--sust-earth);
+            color: var(--sust-earth);
+            font-weight: 600;
+        }
+        
+        .animated-dots::after {
+            content: '.';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60% { content: '...'; }
+            80%, 100% { content: ''; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="https://www.sust.edu/uploads/images/logo.png" alt="SUST Logo" class="h-16 mr-4">
+                    <div>
+                        <h1 class="text-2xl font-bold">Shahjalal University of Science & Technology</h1>
+                        <p class="text-sm opacity-90">Department of Civil & Environmental Engineering</p>
+                    </div>
+                </div>
+                <nav class="flex flex-wrap justify-center space-x-1 md:space-x-6">
+                    <a href="#" class="nav-link px-3 py-2 rounded font-medium">Home</a>
+                    <a href="#about" class="nav-link px-3 py-2 rounded font-medium">About</a>
+                    <a href="#programs" class="nav-link px-3 py-2 rounded font-medium">Programs</a>
+                    <a href="#faculty" class="nav-link px-3 py-2 rounded font-medium">Faculty</a>
+                    <a href="#labs" class="nav-link px-3 py-2 rounded font-medium">Labs</a>
+                    <a href="#research" class="nav-link px-3 py-2 rounded font-medium">Research</a>
+                    <a href="#contact" class="nav-link px-3 py-2 rounded font-medium">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Building Sustainable Futures</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 0.2s;">
+                Pioneering civil infrastructure development and environmental conservation in Bangladesh since 1993.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate-fade-in" style="animation-delay: 0.4s;">
+                <a href="#programs" class="bg-white text-gray-800 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium transition duration-300">
+                    <i class="fas fa-graduation-cap mr-2"></i>Explore Programs
+                </a>
+                <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-6 py-3 rounded-lg font-medium transition duration-300">
+                    <i class="fas fa-envelope mr-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Facts Bar -->
+    <div class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-around text-center">
+                <div class="px-4 py-2">
+                    <p class="text-2xl font-bold">30+</p>
+                    <p class="text-sm">Faculty Members</p>
+                </div>
+                <div class="px-4 py-2">
+                    <p class="text-2xl font-bold">1,200+</p>
+                    <p class="text-sm">Students</p>
+                </div>
+                <div class="px-4 py-2">
+                    <p class="text-2xl font-bold">10+</p>
+                    <p class="text-sm">Research Labs</p>
+                </div>
+                <div class="px-4 py-2">
+                    <p class="text-2xl font-bold">1993</p>
+                    <p class="text-sm">Established</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Department Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">About Our Department</h2>
+                <div class="w-24 h-1 bg-gray-300 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6">
+                        To educate future civil and environmental engineers who will design sustainable infrastructure, solve environmental challenges, and contribute to the nation's development while preserving natural resources for future generations.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Program Highlights</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>Four-year B.Sc. in Civil Engineering with specialization options</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>M.Sc. and Ph.D. programs in various specializations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>Strong industry-academia collaboration for practical training</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>Focus on sustainable and climate-resilient infrastructure</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Department History</h3>
+                        <p class="text-gray-600 mb-4">
+                            Established in 1993, the Department of Civil & Environmental Engineering at SUST has grown to become one of the premier engineering departments in Bangladesh. We have produced thousands of graduates who are now serving in key positions nationally and internationally.
+                        </p>
+                        <div class="relative h-64 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1454789548928-9a73b1ff0a0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Department Building" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-4">
+                                <p class="text-white">Our department building with modern facilities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Academic Programs</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    We offer comprehensive programs designed to prepare students for the challenges of modern civil and environmental engineering.
+                </p>
+                <div class="w-24 h-1 bg-gray-300 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex mb-8 border-b">
+                <button class="tab-button px-6 py-3 active" data-tab="undergrad">Undergraduate</button>
+                <button class="tab-button px-6 py-3" data-tab="graduate">Graduate</button>
+                <button class="tab-button px-6 py-3" data-tab="research">Research</button>
+            </div>
+            
+            <div id="undergrad" class="tab-content animate-fade-in">
+                <div class="bg-gray-50 rounded-lg p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mbАбсолютно, давайте продолжим с того места, где я прервался:
+

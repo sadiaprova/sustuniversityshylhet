@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faculty Login - SUST</title>
+  <link rel="stylesheet" href="faculty_style.css" />
+</head>
+<body>
+  <div class="login-box">
+    <div class="login-header">
+      <img src="sust-logo.png" alt="SUST Logo" height="32" />
+      <h2>Shahjalal University</h2>
+      <p>Faculty Portal</p>
+    </div>
+
+    <form action="faculty_login.php" method="post">
+      <label>Faculty ID / Email</label>
+      <input type="text" name="email" placeholder="faculty@sust.edu" required />
+
+      <label>Password</label>
+      <div class="password-wrapper">
+        <input type="password" name="password" id="password" placeholder="********" required />
+        <span onclick="togglePassword()">👁️</span>
+      </div>
+
+      <div class="options">
+        <input type="checkbox" /> Remember me
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <p class="bottom-text">
+        New faculty member? <a href="#">Request account</a>
+      </p>
+    </form>
+
+    <footer>© 2023 Shahjalal University of Science and Technology. All rights reserved.</footer>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const input = document.getElementById("password");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quick Link Buttons</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f4ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+  .quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 600px;
+    justify-content: center;
+  }
+  .quick-link-btn {
+    background: #274b87;
+    color: #fff;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(39, 75, 135, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+  .quick-link-btn:hover,
+  .quick-link-btn:focus {
+    background: #3a73b3;
+    box-shadow: 0 10px 28px rgba(58, 115, 179, 0.6);
+    outline: none;
+    transform: translateY(-2px);
+  }
+  .quick-link-btn:active {
+    background: #1f3563;
+    box-shadow: 0 4px 12px rgba(31, 53, 99, 0.8);
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+  <nav class="quick-links" aria-label="Quick links">
+    <a href="#" class="quick-link-btn">Home</a>
+    <a href="#" class="quick-link-btn">Academics</a>
+    <a href="#" class="quick-link-btn">Research</a>
+    <a href="#" class="quick-link-btn">Admissions</a>
+    <a href="#" class="quick-link-btn">Publications</a>
+    <a href="#" class="quick-link-btn">Contact</a>
+  </nav>
+</body>
+</html>

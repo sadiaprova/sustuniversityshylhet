@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUST Notice Board</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #2a5298, #1e3c72);
+      min-height: 100vh;
+      color: #fdfdfd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      font-size: 1.25rem;
+      margin-top: 8px;
+      font-weight: 400;
+      color: #cbd5e0;
+      letter-spacing: 1px;
+    }
+
+    main {
+      max-width: 960px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .notice-card {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 20px 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      backdrop-filter: saturate(180%) blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .notice-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.4);
+    }
+
+    .notice-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #e0e7ff;
+      line-height: 1.2;
+    }
+
+    .notice-date {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #a8b2d1;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .notice-body {
+      font-size: 1rem;
+      color: #d1d5db;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: #a8b2d1;
+      text-align: center;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <h1>SUST Notice Board</h1>
+    <p>Stay updated with the latest announcements and news</p>
+  </header>
+
+  <main role="main" aria-label="List of notices">
+    <article class="notice-card" tabindex="0">
+      <h2 class="notice-title">Final Exam Schedule Released</h2>
+      <time class="notice-date" datetime="2024-06-10">June 10, 2024</time>
+      <p class="notice-body">
+        The final exam schedule for the Spring 2024 semester has been released. Students can check their respective departments' notice boards or website for details.
+      </p>
+    </article>
+
+    <article class="notice-card" tabindex="0">
+      <h2 class="notice-title">Admission Applications Open for Fall 2024</h2>
+      <time class="notice-date" datetime="2024-06-05">June 5, 2024</time>
+      <p class="notice-body">
+        Applications for admission to undergraduate and graduate programs for Fall 2024 are now open. Deadline for submission is July 20, 2024.
+      </p>
+    </article>
+
+    <article class="notice-card" tabindex="0">
+      <h2 class="notice-title">Campus WiFi Maintenance</h2>
+      <time class="notice-date" datetime="2024-06-15">June 15, 2024</time>
+      <p class="notice-body">
+        Scheduled maintenance of campus WiFi will take place on June 15, 2024, from 10 PM to 2 AM. Temporary internet disconnection might occur during this period.
+      </p>
+    </article>
+
+    <article class="notice-card" tabindex="0">
+      <h2 class="notice-title">Guest Lecture: Innovations in AI</h2>
+      <time class="notice-date" datetime="2024-06-12">June 12, 2024</time>
+      <p class="notice-body">
+        Join us for a guest lecture by Dr. Jane Smith on cutting-edge innovations in artificial intelligence. The session will be held at the auditorium at 3 PM.
+      </p>
+    </article>
+
+    <article class="notice-card" tabindex="0">
+      <h2 class="notice-title">Library Operational Hours Extended</h2>
+      <time class="notice-date" datetime="2024-06-08">June 8, 2024</time>
+      <p class="notice-body">
+        The university library will extend its hours from 8 AM to 11 PM from June 10th to support students during exam preparation.
+      </p>
+    </article>
+  </main>
+
+  <footer>
+    &copy; 2024 Shahjalal University of Science and Technology (SUST)
+  </footer>
+</body>
+</html>
+

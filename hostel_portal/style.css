@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.login-box, .dashboard {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input, button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.card {
+    background: #e6f7ff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Campus Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="data.json href="index.html">
+</head>
+<body onload="loadCampusData()">
+    <div class="dashboard">
+        <h2>Welcome, Student ID: <span id="studentIdDisplay"></span></h2>
+        <div class="card">
+            <h3>🏠 Hostel Room</h3>
+            <p><strong>Room Number:</strong> <span id="hostelRoom"></span></p>
+        </div>
+        <div class="card">
+            <h3>🍽️ Canteen Menu</h3>
+            <ul id="canteenMenu"></ul>
+            <button onclick="placeOrder()">Place Order</button>
+            <div id="orderMessage"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
